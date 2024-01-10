@@ -29,15 +29,20 @@ function createCharacterCard(arr){
         img.setAttribute('src',`${character.image}`)
         cardDiv.classList.add('card')
         smallDiv.classList.add('scroll-div')
+        p.classList.add('para')
         p.appendChild(li)
 
-        // smallDiv.appendChild(p)
+        smallDiv.appendChild(p)
         cardDiv.appendChild(img)
         cardDiv.appendChild(h2)
         cardDiv.appendChild(smallDiv)
 
         divContainer.append(cardDiv)
         console.log(character)
+
+        smallDiv.addEventListener('scroll',(e) => scrollThruDiv(e))
+        img.addEventListener('dblclick',(e) => dblClickLike(e))
+
     }
 }
 
@@ -46,18 +51,24 @@ function createCharacterCard(arr){
 
 // add a event listener that listens for a dble click and when a dble click event is triggered an alert is supossed to pop up and say this character has been likeed( this being the targeted character card )
 // function for event listener 
-
+function dblClickLike(e){
+    console.log(e.target)
+}
 
 
 //create a submit event listner for every cahracter card that filters the and tries to finds the specific they were in 
 // or have a submt event listner that filter the characters by episode and displays the first 5-10 on the screen 
 //fucntion for event listener 
+//going to have to reset the div and then innerText = '' and then adjust it to show what characters where in the episode
 
 
 
 // on every card there will be a list showing the episodes they were in and will have a scroll event listener 
+// use it as an event listner for the smallDiv portion and create it and style it in the css 
 //function for event listener 
-
+function scrollThruDiv(e){  
+    console.log(e.target)
+}
 
 
 //add buttons and label them properly, name them accordingly 
