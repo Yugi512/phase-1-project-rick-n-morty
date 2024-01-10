@@ -1,8 +1,44 @@
 // create the character chards for the page 
-fetch('https://rickandmortyapi.com/api/character',createCharacterCard(character))
+fetch('https://rickandmortyapi.com/api/character')
+.then((response) => {return response.json()})
+.then((data) => {
+    let arr = data.results;
+    console.log(arr)
+    createCharacterCard(arr)
+})
 
-function createCharacterCard(character){
-    
+let divContainer = document.getElementById('character-cards')
+
+function createCharacterCard(arr){
+
+    for(const character of arr){  
+        let cardDiv = document.createElement('div')
+        let h2 = document.createElement('h2')
+        let img = document.createElement('img')
+        let smallDiv = document.createElement('div')
+        let p = document.createElement('p')
+        let li = document.createElement('li')
+
+        for(const ep of character.episode){
+            li.innerText= `${ep}`
+        }
+        
+
+        h2.innerText = `${character.name}`
+        img.classList.add('character-img')
+        img.setAttribute('src',`${character.image}`)
+        cardDiv.classList.add('card')
+        smallDiv.classList.add('scroll-div')
+        p.appendChild(li)
+
+        smallDiv.appendChild(p)
+        cardDiv.appendChild(img)
+        cardDiv.appendChild(h2)
+        cardDiv.appendChild(smallDiv)
+
+        divContainer.append(cardDiv)
+        console.log(character)
+    }
 }
 
 
@@ -26,3 +62,4 @@ function createCharacterCard(character){
 
 //add buttons and label them properly, name them accordingly 
 // the buttons should go into the card as a click event listner 
+// or a fullscreen
