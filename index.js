@@ -19,9 +19,9 @@ function createCharacterCard(arr){
         let p = document.createElement('p')
         let li = document.createElement('li')
 
-        for(const ep of character.episode){
-            li.innerText= `${ep}`
-        }
+        // for(const ep of character.episode){
+        //     li.innerText= `${ep}`
+        // }
         
 
         h2.innerText = `${character.name}`
@@ -31,7 +31,7 @@ function createCharacterCard(arr){
         smallDiv.classList.add('scroll-div')
         p.appendChild(li)
 
-        smallDiv.appendChild(p)
+        // smallDiv.appendChild(p)
         cardDiv.appendChild(img)
         cardDiv.appendChild(h2)
         cardDiv.appendChild(smallDiv)
