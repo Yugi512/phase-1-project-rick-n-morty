@@ -30,9 +30,15 @@ function createCharacterCard(arr){
         cardDiv.classList.add('card')
         smallDiv.classList.add('scroll-div')
         p.classList.add('para')
-        p.appendChild(li)
-
+            for(const ep of character.episode){
+                let ul = document.createElement('ul')
+                let li = document.createElement('li')
+                ul.appendChild(li)
+                li.innerText = ep;
+                p.appendChild(ul)
+            }
         smallDiv.appendChild(p)
+        p.appendChild(li)
         cardDiv.appendChild(img)
         cardDiv.appendChild(h2)
         cardDiv.appendChild(smallDiv)
@@ -40,7 +46,7 @@ function createCharacterCard(arr){
         divContainer.append(cardDiv)
         console.log(character)
 
-        smallDiv.addEventListener('scroll',(e) => scrollThruDiv(e))
+        // smallDiv.addEventListener('scroll',(e) => scrollThruDiv(e))
         img.addEventListener('dblclick',(e) => dblClickLike(e))
 
     }
