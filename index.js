@@ -14,7 +14,42 @@ let styleButton = document.getElementById('style-button')
 let form = document.getElementById('ricknmorty-form')
 
 function createCharacterCard(arr){
+    forLoopCharacterCard(arr)
+    // for(const character of arr){  
+    //     let cardDiv = document.createElement('div')
+    //     let h2 = document.createElement('h2')
+    //     let img = document.createElement('img')
+    //     let smallDiv = document.createElement('div')
 
+    //     h2.innerText = `${character.name}`
+    //     img.classList.add('character-img')
+    //     img.setAttribute('src',`${character.image}`)
+    //     img.setAttribute('id',`${character.name}`)
+    //     cardDiv.classList.add('card')
+    //     smallDiv.classList.add('scroll-div')
+
+    //     cardDiv.appendChild(img)
+    //     cardDiv.appendChild(h2)
+    //     cardDiv.appendChild(smallDiv)
+
+    //     divContainer.append(cardDiv)
+    //     console.log(character)
+
+    //     cardDiv.addEventListener('dblclick',(e) => {
+    //         setInterval(alert(`${character.name} has been liked`),1500)
+    //     })
+    // }
+    styleButton.addEventListener('click',(e) => changeBackgroundImage(e))
+    form.addEventListener('submit',(e) => {
+        submitListener(e)
+    })
+}
+
+
+// add a event listener that listens for a dble click and when a dble click event is triggered an alert is supossed to pop up and say this character has been likeed( this being the targeted character card )
+// function for event listener 
+//for loop function that creates the character cards 
+function forLoopCharacterCard(arr){
     for(const character of arr){  
         let cardDiv = document.createElement('div')
         let h2 = document.createElement('h2')
@@ -22,11 +57,6 @@ function createCharacterCard(arr){
         let smallDiv = document.createElement('div')
         let p = document.createElement('p')
         let li = document.createElement('li')
-
-        // for(const ep of character.episode){
-        //     li.innerText= `${ep}`
-        // }
-        
 
         h2.innerText = `${character.name}`
         img.classList.add('character-img')
@@ -55,14 +85,7 @@ function createCharacterCard(arr){
             setInterval(alert(`${character.name} has been liked`),1500)
         })
     }
-    styleButton.addEventListener('click',(e) => changeBackgroundImage(e))
-    form.addEventListener('submit',(e) => submitListener(e))
 }
-
-
-// add a event listener that listens for a dble click and when a dble click event is triggered an alert is supossed to pop up and say this character has been likeed( this being the targeted character card )
-// function for event listener 
-
 
 //create a submit event listner for every cahracter card that filters the and tries to finds the specific they were in 
 // or have a submt event listner that filter the characters by episode and displays the first 5-10 on the screen 
@@ -70,6 +93,41 @@ function createCharacterCard(arr){
 //going to have to reset the div and then innerText = '' and then adjust it to show what characters where in the episode
 function submitListener(e){
     e.preventDefault()
+    let inputValue = document.getElementById('input-text').value
+    fetch(`https://rickandmortyapi.com/api/episode/${inputValue}`)
+    .then((res) => { return res.json()})
+    .then((fetchData) => {
+        divContainer.innerHTML = ""
+        let characterArr = fetchData.characters
+        for(const character of characterArr){  
+            fetch(character)
+            .then((response3) => {return response3.json()})
+            .then((data3) => {
+             let cardDiv = document.createElement('div')
+             let h2 = document.createElement('h2')
+             let img = document.createElement('img')
+
+             h2.innerText = `${data3.name}`
+             img.classList.add('character-img')
+             img.setAttribute('src',`${data3.image}`)
+             img.setAttribute('id',`${data3.name}`)
+             cardDiv.classList.add('card')
+            
+             h2.style.color = "black";
+             img.style.height = "35rem";
+             cardDiv.appendChild(img)
+             cardDiv.appendChild(h2)
+
+             divContainer.append(cardDiv)
+             console.log(character)
+
+            cardDiv.addEventListener('dblclick',(e) => {
+            setInterval(alert(`${data3.name} has been liked`),1500)
+                })
+            })
+        } 
+    })
+    form.reset()
 }
 
 
