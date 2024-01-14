@@ -6,7 +6,7 @@ This app is a Rick and Morty fanpage that displays some of the characters, in ad
 
 # Usage
 
-Displays 20 characters and each character can be liked   
+Displays 20 characters and the episodes that they are in, each of the character cards can be liked with a double click on the character card
 
 The background can be changed with a click of a button in the top right corner of the web application. The images I used for the background are will be are listed below:
 
