@@ -26,14 +26,14 @@ body{
 h2{
     text-align: center;
     color: white;
-    font-size: 42px;
+    font-size: 64px;
     font-family: Georgia, 'Times New Roman', Times, serif
 }
 
 h3{
     text-align: center;
     color: white;
-    font-size: 36px;
+    font-size: 46px;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 #character-cards{
@@ -68,8 +68,8 @@ h3{
     text-align: center;
     border: seagreen solid 2px;
     padding: 1rem;
-    width: 35rem;
-    height: 46rem;
+    width: 40rem;
+    height: 51rem;
     display: inline-grid;
     margin: 2rem 3rem;
     box-shadow: 10px 12px black;
@@ -105,6 +105,21 @@ h3{
     margin: 2rem;
 }
 #style-button:hover{
+    background-color: white;
+    border: black solid 5px;
+    color: black;
+}
+
+#reset-button{
+    position:absolute; 
+    top:0; 
+    left:0;
+    border-color: black ;
+    height: 3rem;
+    font-size: 16px;
+    margin: 2rem;
+}
+#reset-button:hover{
     background-color: white;
     border: black solid 5px;
     color: black;

@@ -3,7 +3,7 @@ let divContainer = document.getElementById('character-cards')
 let styleClass =  document.getElementsByClassName('style')
 let styleButton = document.getElementById('style-button')
 let form = document.getElementById('ricknmorty-form')
-
+let resetButton = document.getElementById('reset-button')
 // add a event listener that listens for a dble click and when a dble click event is triggered an alert is supossed to pop up and say this character has been likeed( this being the targeted character card )
 // function for event listener 
 //for loop function that creates the character cards 
@@ -22,66 +22,28 @@ let form = document.getElementById('ricknmorty-form')
 
 
 // call the function to create the character cards
-createCharacterCard()
+createCharacterCards()
 
 
 
 // functions 
-function createCharacterCard(){
+function createCharacterCards(){
     fetch('https://rickandmortyapi.com/api/character')
        .then((response) => {return response.json()})
        .then((data) => {
-        let arr = data.results;
-        console.log(arr)
-        forLoopCharacterCard(arr)
+        let characterArray = data.results;
+        console.log(characterArray)
+        characterArray.forEach(createCharacterCard)
+        // characterArray.forEach((character) => createCharacterCard(character))
        })
    
     styleButton.addEventListener('click',(e) => changeBackgroundImage(e))
     form.addEventListener('submit',(e) => {
         submitListener(e)
     })
+    resetButton.addEventListener('click', (e) => resetButtonListener(e))
 }
 
-
-
-
-function forLoopCharacterCard(arr){
-    for(const character of arr){  
-        let cardDiv = document.createElement('div')
-        let h2 = document.createElement('h2')
-        let img = document.createElement('img')
-        let smallDiv = document.createElement('div')
-        let p = document.createElement('p')
-        let li = document.createElement('li')
-
-        h2.innerText = `${character.name}`
-        img.classList.add('character-img')
-        img.setAttribute('src',`${character.image}`)
-        img.setAttribute('id',`${character.name}`)
-        cardDiv.classList.add('card')
-        smallDiv.classList.add('scroll-div')
-        p.classList.add('para')
-            for(const ep of character.episode){
-                let ul = document.createElement('ul')
-                let li = document.createElement('li')
-                ul.appendChild(li)
-                li.innerText = ep;
-                p.appendChild(ul)
-            }
-        smallDiv.appendChild(p)
-        p.appendChild(li)
-        cardDiv.appendChild(img)
-        cardDiv.appendChild(h2)
-        cardDiv.appendChild(smallDiv)
-
-        divContainer.append(cardDiv)
-        console.log(character)
-
-        cardDiv.addEventListener('dblclick',(e) => {
-            setInterval(alert(`${character.name} has been liked`),1500)
-        })
-    }
-}
 
 function changeBackgroundImage(e){
     let wholePage = document.getElementsByClassName('whole-page')
@@ -107,42 +69,83 @@ function submitListener(e){
     .then((res) => { return res.json()})
     .then((fetchData) => {
         let characterArr = fetchData.characters
-        submitListenerForLoop(characterArr)
+        characterArr.forEach(createSubmitListener)
+        console.log(characterArr)
     })
     console.log(inputValue)
 }
 
 
 
-function submitListenerForLoop(characterArr){
-    for(const character of characterArr){  
-        divContainer.innerHTML = ""
-        fetch(character)
-        .then((response3) => {return response3.json()})
-        .then((data3) => {
-         let cardDiv = document.createElement('div')
-         let h2 = document.createElement('h2')
-         let img = document.createElement('img')
+function createSubmitListener(characterURL){
 
-         h2.innerText = `${data3.name}`
-         img.classList.add('character-img')
-         img.setAttribute('src',`${data3.image}`)
-         img.setAttribute('id',`${data3.name}`)
-         cardDiv.classList.add('card')
-        
-         h2.style.color = "black";
-         img.style.height = "35rem";
-         cardDiv.appendChild(img)
-         cardDiv.appendChild(h2)
+    divContainer.innerHTML = ""
+    fetch(characterURL)
+    .then((response3) => {return response3.json()})
+    .then((data3) => {
+        let cardDiv = document.createElement('div')
+        let h2 = document.createElement('h2')
+        let img = document.createElement('img')
 
-         divContainer.append(cardDiv)
-         console.log(character)
+        h2.innerText = `${data3.name}`
+        img.classList.add('character-img')
+        img.setAttribute('src',`${data3.image}`)
+        img.setAttribute('id',`${data3.name}`)
+        cardDiv.classList.add('card')
+    
+        h2.style.color = "black";
+        img.style.height = "35rem";
+        cardDiv.appendChild(img)
+        cardDiv.appendChild(h2)
 
-        cardDiv.addEventListener('dblclick',(e) => {
-        setInterval(alert(`${data3.name} has been liked`),1500)
-                })
+        divContainer.append(cardDiv)
+
+    cardDiv.addEventListener('dblclick',(e) => {
+    setInterval(alert(`${data3.name} has been liked`),1500)
             })
-        } 
+        })
     form.reset()
+}
 
+function resetButtonListener(e){
+    divContainer.innerHTML = ""
+    createCharacterCards()
+}
+
+
+function createCharacterCard(character){
+
+    let cardDiv = document.createElement('div')
+    let h2 = document.createElement('h2')
+    let img = document.createElement('img')
+    let smallDiv = document.createElement('div')
+    let p = document.createElement('p')
+    let li = document.createElement('li')
+
+    h2.innerText = `${character.name}`
+    img.classList.add('character-img')
+    img.setAttribute('src',`${character.image}`)
+    img.setAttribute('id',`${character.name}`)
+    cardDiv.classList.add('card')
+    smallDiv.classList.add('scroll-div')
+    p.classList.add('para')
+        for(const ep of character.episode){
+            let ul = document.createElement('ul')
+            let li = document.createElement('li')
+            ul.appendChild(li)
+            li.innerText = ep;
+            p.appendChild(ul)
+        }
+    smallDiv.appendChild(p)
+    p.appendChild(li)
+    cardDiv.appendChild(img)
+    cardDiv.appendChild(h2)
+    cardDiv.appendChild(smallDiv)
+
+    divContainer.append(cardDiv)
+    console.log(character)
+
+    cardDiv.addEventListener('dblclick',(e) => {
+            setInterval(alert(`${character.name} has been liked`),1500)
+        })
 }
