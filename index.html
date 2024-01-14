@@ -8,26 +8,16 @@
     <script defer type="text/javascript" src="index.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
-  <body>
+  <body id="body" class="whole-page">
     <h2>Rick and Morty Episode Look up</h2>
     <button type="button" aria-placeholder="style-button" id="style-button">change background</button>
-    <style>
-     html {
-      background-image: url('https://static.vecteezy.com/system/resources/previews/004/704/028/large_2x/light-blue-and-green-colorful-dramatic-space-with-colorful-galaxies-and-stars-for-background-free-photo.jpg');
-       background-repeat: no-repeat;
-       background-attachment: fixed;
-       background-size: cover;
-        display: flex;
-       justify-content: center;
-      }
-    </style>
-    <div class="form-container">
-      <form id="ricknmorty-form">
-        <h3>look up an episode </h3>
-        <input type="text" name="name" placeholder="ex:#1-20" class="input-text" id="input-text">
-        <input type="submit" name="submit" value="enter" class="submit">
-      </form>
-    </div>
-    <div id="character-cards"></div>
+      <div class="form-container">
+        <form id="ricknmorty-form">
+          <h3>look up an episode </h3>
+          <input type="text" name="name" placeholder="ex:#1-20" class="input-text"    id="input-text">
+          <input type="submit" name="submit" value="enter" class="submit">
+        </form>
+      </div>
+      <div id="character-cards"></div>
   </body>
 </html> 
