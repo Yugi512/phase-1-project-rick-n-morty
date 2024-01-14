@@ -96,9 +96,9 @@ function submitListener(e){
     fetch(`https://rickandmortyapi.com/api/episode/${inputValue}`)
     .then((res) => { return res.json()})
     .then((fetchData) => {
-        divContainer.innerHTML = ""
         let characterArr = fetchData.characters
         for(const character of characterArr){  
+            divContainer.innerHTML = ""
             fetch(character)
             .then((response3) => {return response3.json()})
             .then((data3) => {
@@ -125,6 +125,7 @@ function submitListener(e){
                     })
                 })
             } 
+            form.reset()
         })
     form.reset()
 }
@@ -148,8 +149,14 @@ let img1 = "https://static.vecteezy.com/system/resources/previews/004/704/028/la
 
 function changeBackgroundImage(e){
     let wholePage = document.getElementsByClassName('whole-page')
-    wholePage[0].classList.remove('whole-page')
     let bodys = document.getElementById('body')
-    bodys.classList.add('differentpage')
-    bodys.classList.add('thirdPage')
+    // bodys.classList.add('differentPage')
+    // bodys.classList.add('thirdPage')
+    if(bodys.classList[0] === 'whole-page'){
+        bodys.classList.replace('whole-page','differentPage')
+    } else if(bodys.classList[0] === 'differentPage'){
+        bodys.classList.replace('differentPage','thirdPage')
+    } else if(bodys.classList[0] === 'thirdPage'){
+        bodys.classList.replace('thirdPage','whole-page')
+    }
 }
