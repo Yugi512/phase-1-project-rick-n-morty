@@ -8,8 +8,7 @@ fetch('https://rickandmortyapi.com/api/character')
 })
 
 let divContainer = document.getElementById('character-cards')
-let style =  document.getElementsByTagName('style')
-console.log(style[0].innerText)
+let styleClass =  document.getElementsByClassName('style')
 let styleButton = document.getElementById('style-button')
 let form = document.getElementById('ricknmorty-form')
 
@@ -82,7 +81,7 @@ function forLoopCharacterCard(arr){
         console.log(character)
 
         cardDiv.addEventListener('dblclick',(e) => {
-            setInterval(alert(`${character.name} was liked`),1500)
+            setInterval(alert(`${character.name} has been liked`),1500)
         })
     }
 }
@@ -99,7 +98,6 @@ function submitListener(e){
     .then((fetchData) => {
         divContainer.innerHTML = ""
         let characterArr = fetchData.characters
-
         for(const character of characterArr){  
             fetch(character)
             .then((response3) => {return response3.json()})
@@ -123,7 +121,7 @@ function submitListener(e){
              console.log(character)
 
             cardDiv.addEventListener('dblclick',(e) => {
-            setInterval(alert(`${data3.name} was liked`),1500)
+            setInterval(alert(`${data3.name} has been liked`),1500)
                     })
                 })
             } 
@@ -144,19 +142,14 @@ function submitListener(e){
 // so new idea is to have it be like a link 
 
 // function for changing the background image 
+let img3 = "https://theastroenthusiast.com/wp-content/uploads/2021/09/annotated_small-scaled.jpg"
+let img2 = "https://www.wallpapertip.com/wmimgs/3-34435_galaxy-wallpaper-hd.jpg"
+let img1 = "https://static.vecteezy.com/system/resources/previews/004/704/028/large_2x/light-blue-and-green-colorful-dramatic-space-with-colorful-galaxies-and-stars-for-background-free-photo.jpg"
 
 function changeBackgroundImage(e){
-    console.log(e)
-
-    style[0].innerHTML = ""
-    document.body.style.backgroundImage = "url('https://theastroenthusiast.com/wp-content/uploads/2021/09/annotated_small-scaled.jpg')";
-    style[0].style.backgroundrepeat= "no-repeat";
-    style[0].style.backgroundAttachment = "fixed";
-    style[0].style.backgroundSize = "cover";
-    style[0].style.display = "flex";
-    style[0].style.justifyContent = "center"
-
-    // let img1 = "https://theastroenthusiast.com/wp-content/uploads/2021/09/annotated_small-scaled.jpg"
-    // let img2 = "https://www.wallpapertip.com/wmimgs/3-34435_galaxy-wallpaper-hd.jpg"
-    // let img3 = "https://static.vecteezy.com/system/resources/previews/004/704/028/large_2x/light-blue-and-green-colorful-dramatic-space-with-colorful-galaxies-and-stars-for-background-free-photo.jpg"
+    let wholePage = document.getElementsByClassName('whole-page')
+    wholePage[0].classList.remove('whole-page')
+    let bodys = document.getElementById('body')
+    bodys.classList.add('differentpage')
+    bodys.classList.add('thirdPage')
 }
