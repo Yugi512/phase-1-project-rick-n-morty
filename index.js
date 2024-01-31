@@ -51,7 +51,6 @@ function createCharacterCard(character){
     let img = document.createElement('img')
     let smallDiv = document.createElement('div')
     let p = document.createElement('p')
-    let li = document.createElement('li')
 
     h2.innerText = `${character.name}`
     img.classList.add('character-img')
