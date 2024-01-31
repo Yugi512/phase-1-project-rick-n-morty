@@ -44,6 +44,41 @@ function createCharacterCards(){
     resetButton.addEventListener('click', (e) => resetButtonListener(e))
 }
 
+function createCharacterCard(character){
+
+    let cardDiv = document.createElement('div')
+    let h2 = document.createElement('h2')
+    let img = document.createElement('img')
+    let smallDiv = document.createElement('div')
+    let p = document.createElement('p')
+    let li = document.createElement('li')
+
+    h2.innerText = `${character.name}`
+    img.classList.add('character-img')
+    img.setAttribute('src',`${character.image}`)
+    img.setAttribute('id',`${character.name}`)
+    cardDiv.classList.add('card')
+    smallDiv.classList.add('scroll-div')
+    p.classList.add('para')
+        for(const ep of character.episode){
+            let ul = document.createElement('ul')
+            let li = document.createElement('li')
+            ul.appendChild(li)
+            li.innerText = ep;
+            p.appendChild(ul)
+        }
+    smallDiv.appendChild(p)
+    cardDiv.appendChild(img)
+    cardDiv.appendChild(h2)
+    cardDiv.appendChild(smallDiv)
+
+    divContainer.append(cardDiv)
+    console.log(character)
+
+    cardDiv.addEventListener('dblclick',(e) => {
+            setInterval(alert(`${character.name} has been liked`),1500)
+        })
+}
 
 function changeBackgroundImage(e){
     let wholePage = document.getElementsByClassName('whole-page')
@@ -113,39 +148,3 @@ function resetButtonListener(e){
 }
 
 
-function createCharacterCard(character){
-
-    let cardDiv = document.createElement('div')
-    let h2 = document.createElement('h2')
-    let img = document.createElement('img')
-    let smallDiv = document.createElement('div')
-    let p = document.createElement('p')
-    let li = document.createElement('li')
-
-    h2.innerText = `${character.name}`
-    img.classList.add('character-img')
-    img.setAttribute('src',`${character.image}`)
-    img.setAttribute('id',`${character.name}`)
-    cardDiv.classList.add('card')
-    smallDiv.classList.add('scroll-div')
-    p.classList.add('para')
-        for(const ep of character.episode){
-            let ul = document.createElement('ul')
-            let li = document.createElement('li')
-            ul.appendChild(li)
-            li.innerText = ep;
-            p.appendChild(ul)
-        }
-    smallDiv.appendChild(p)
-    p.appendChild(li)
-    cardDiv.appendChild(img)
-    cardDiv.appendChild(h2)
-    cardDiv.appendChild(smallDiv)
-
-    divContainer.append(cardDiv)
-    console.log(character)
-
-    cardDiv.addEventListener('dblclick',(e) => {
-            setInterval(alert(`${character.name} has been liked`),1500)
-        })
-}
