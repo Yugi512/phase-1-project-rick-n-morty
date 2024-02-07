@@ -12,7 +12,7 @@ The background can be changed with a click of a button in the top right corner o
 
 - https://static.vecteezy.com/system/resources/previews/004/704/028/large_2x/light-blue-and-green-colorful-dramatic-space-with-colorful-galaxies-and-stars-for-background-free-photo.jpg
 
-- https://www.wallpapertip.com/wmimgs/3-34435_galaxy-wallpaper-hd.jpg
+- https://wallpapercave.com/wp/wp4247401.jpg
 
 - https://theastroenthusiast.com/wp-content/uploads/2021/09/annotated_small-scaled.jpg
 
