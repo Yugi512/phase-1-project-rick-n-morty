@@ -23,9 +23,15 @@ body{
     background-size: cover;
     justify-items: center;
 }
-h2{
+h1{
     text-align: center;
     color: white;
+    font-size: 72px;
+    font-family: Georgia, 'Times New Roman', Times, serif
+}
+h2{
+    text-align: center;
+    color: seagreen;
     font-size: 64px;
     font-family: Georgia, 'Times New Roman', Times, serif
 }
